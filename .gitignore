@@ -1,0 +1,12 @@
+.DS_Store
+
+# Local reference materials
+docs/
+doc/
+data/
+
+# Local tooling and scratch files
+.agents/
+.tmp_fangda_capture/
+.tmp_fangda_sequence/
+.tmp_local_opening/

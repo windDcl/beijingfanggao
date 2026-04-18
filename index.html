@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>北京康诰律师事务所</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="intro-mask" aria-hidden="true">
+      <div class="intro-mark">
+        <div class="intro-wordmark" aria-label="BEIJING KANGGAO">
+          <span>B</span>
+          <span>E</span>
+          <span>I</span>
+          <span>J</span>
+          <span>I</span>
+          <span>N</span>
+          <span>G</span>
+          <span>&nbsp;</span>
+          <span>K</span>
+          <span>A</span>
+          <span>N</span>
+          <span>G</span>
+          <span>G</span>
+          <span>A</span>
+          <span>O</span>
+        </div>
+        <div class="intro-submark">北京康诰律师事务所</div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#hero" aria-label="北京康诰律师事务所首页">
+        <img src="./docs/logo.png" alt="北京康诰律师事务所" />
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <a href="javascript:void(0)">业务领域</a>
+        <a href="javascript:void(0)">专业团队</a>
+        <a href="javascript:void(0)">研究洞察</a>
+        <a href="javascript:void(0)">关于康诰</a>
+      </nav>
+
+      <div class="header-tools">
+        <span>中文</span>
+        <button type="button" class="nav-button" aria-label="更多菜单">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-label="首页开场">
+        <div class="hero-slider">
+          <article class="hero-slide is-active" data-tone="light">
+            <div class="slide-media slide-media-blue"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-shell">
+              <div class="slide-kicker">北京康诰律师事务所</div>
+              <h1>
+                解答复杂争议
+                <br />
+                与关键交易问题
+              </h1>
+              <p>
+                以审慎判断、精确表达与稳定执行力，陪伴企业与企业家穿越高压决策时刻。
+              </p>
+            </div>
+          </article>
+
+          <article class="hero-slide hero-slide-dark" data-tone="dark">
+            <div class="slide-media slide-media-charcoal"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-shell">
+              <div class="slide-kicker">KANGGAO LAW FIRM</div>
+              <h2>
+                立足北京视角
+                <br />
+                服务全国商业语境
+              </h2>
+              <p>
+                在监管、争议、公司治理与长期顾问服务中，提供更懂本土沟通方式的法律支持。
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="hero-controls" aria-label="开场切换">
+          <button
+            type="button"
+            class="hero-arrow"
+            id="prevSlide"
+            aria-label="上一张"
+          >
+            <span></span>
+          </button>
+          <div class="hero-meta">
+            <div class="hero-progress">
+              <span id="heroProgress"></span>
+            </div>
+            <div class="hero-index">
+              <span id="currentSlide">01</span>
+              <span class="hero-index-separator">/</span>
+              <span>02</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="hero-arrow hero-arrow-next"
+            id="nextSlide"
+            aria-label="下一张"
+          >
+            <span></span>
+          </button>
+        </div>
+
+        <div class="hero-scrollcue" aria-hidden="true">
+          <span></span>
+          <small>SCROLL</small>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
