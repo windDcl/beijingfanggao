@@ -7,6 +7,12 @@
   --line-dark: rgba(255, 255, 255, 0.6);
   --header-height: 96px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font-brand: "Archivo", "Avenir Next", "Helvetica Neue", sans-serif;
+  --font-zh-sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  --font-zh-serif: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --text-body: 1rem;
+  --text-body-lg: 1.1rem;
+  --text-label: 0.82rem;
 }
 
 * {
@@ -22,7 +28,10 @@ body {
   min-width: 320px;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-zh-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
 }
 
 body.is-dark {
@@ -73,10 +82,10 @@ button {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.2rem, 1.7vw, 2rem);
+  font-family: var(--font-brand);
+  font-size: clamp(1rem, 1.45vw, 1.55rem);
   font-weight: 600;
-  letter-spacing: 0.009em;
+  letter-spacing: 0.14em;
 }
 
 .intro-wordmark span {
@@ -104,8 +113,9 @@ button {
 .intro-submark {
   opacity: 0;
   transform: translateY(12px);
-  font-size: clamp(0.9rem, 1.1vw, 1rem);
-  letter-spacing: 0.34em;
+  font-family: var(--font-zh-sans);
+  font-size: clamp(0.72rem, 0.82vw, 0.82rem);
+  letter-spacing: 0.12em;
   animation: introSubmark 0.75s var(--ease) 0.5s forwards;
 }
 
@@ -121,19 +131,42 @@ button {
   height: var(--header-height);
   padding: 22px 36px 0;
   color: rgba(255, 255, 255, 0.92);
+  background: linear-gradient(180deg, rgba(7, 10, 22, 0.82), rgba(7, 10, 22, 0.38) 72%, rgba(7, 10, 22, 0));
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .brand {
   display: inline-flex;
-  align-items: center;
-  max-width: min(240px, 30vw);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: min(248px, 26vw);
+  color: rgba(255, 255, 255, 0.98);
+  line-height: 1;
 }
 
-.brand img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: brightness(0) invert(1);
+.brand-wordmark {
+  font-family: var(--font-brand);
+  font-size: clamp(1.12rem, 1.45vw, 1.48rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.brand-cn {
+  font-family: var(--font-zh-sans);
+  font-size: clamp(0.64rem, 0.74vw, 0.74rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  opacity: 0.84;
 }
 
 .site-nav {
@@ -141,8 +174,10 @@ button {
   align-items: center;
   justify-content: flex-end;
   gap: 26px;
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-zh-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   text-align: right;
 }
 
@@ -220,6 +255,8 @@ button {
   background-position: center center;
   background-size: cover;
   transform: scale(1.02);
+  animation: heroArtDrift 18s ease-in-out infinite alternate;
+  will-change: transform, filter;
 }
 
 .slide-media-blue::before {
@@ -233,6 +270,8 @@ button {
   background:
     linear-gradient(90deg, rgba(16, 29, 37, 0.5), rgba(16, 29, 37, 0.22) 34%, rgba(12, 40, 61, 0.12) 100%),
     radial-gradient(circle at 22% 34%, rgba(255, 255, 255, 0.26), transparent 24%);
+  animation: heroMistFloat 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
 .slide-media-blue::after {
@@ -253,6 +292,8 @@ button {
     linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 70%);
   clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
   opacity: 0.55;
+  animation: heroLightSweep 22s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .slide-media-charcoal {
@@ -312,11 +353,12 @@ button {
 .slide-shell h2 {
   margin: 0;
   max-width: 4.5em;
-  font-family: "Noto Serif SC", serif;
-  font-size: clamp(3rem, 8vw, 6.3rem);
-  line-height: 1.08;
+  font-family: var(--font-zh-serif);
+  font-size: clamp(2.35rem, 5.9vw, 4.5rem);
+  line-height: 1.04;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-wrap: balance;
 }
 
 .hero-slide h1,
@@ -378,24 +420,28 @@ button {
 
 .about-kicker {
   margin-bottom: 14px;
-  font-size: 13px;
-  letter-spacing: 0.2em;
+  font-family: var(--font-zh-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.78);
 }
 
 .about-content h2 {
   margin: 0;
-  font-size: clamp(3.1rem, 6vw, 5.4rem);
-  line-height: 1.05;
+  font-family: var(--font-zh-serif);
+  font-size: clamp(3rem, 5.8vw, 5rem);
+  line-height: 1.06;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .about-content p {
   margin: 28px 0 0;
   max-width: 31rem;
-  font-size: clamp(1.1rem, 1.85vw, 1.4rem);
-  line-height: 1.8;
+  font-family: var(--font-zh-sans);
+  font-size: var(--text-body-lg);
+  line-height: 1.92;
+  letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.92);
 }
 
@@ -409,7 +455,9 @@ button {
   justify-content: space-between;
   padding: 0 28px 0 30px;
   color: #fff;
-  font-size: 18px;
+  font-family: var(--font-zh-sans);
+  font-size: 1rem;
+  font-weight: 500;
   letter-spacing: 0.08em;
   transition:
     background 0.35s var(--ease),
@@ -444,16 +492,18 @@ button {
 }
 
 .team-hero-background {
-  background-image: url("./docs/品牌素材相关/视觉中国已购/康诰业绩原图.jpg");
+  background-image: url("./docs/品牌素材相关/视觉中国已购/康诰声誉原图.jpg");
   background-position: center center;
   background-size: cover;
   transform: scale(1.04);
+  filter: saturate(0.84) brightness(0.74);
 }
 
 .team-hero-overlay {
   background:
-    linear-gradient(180deg, rgba(7, 18, 32, 0.88), rgba(7, 18, 32, 0.72) 28%, rgba(7, 18, 32, 0.84) 100%),
-    linear-gradient(90deg, rgba(7, 18, 32, 0.68), rgba(7, 18, 32, 0.3));
+    linear-gradient(180deg, rgba(7, 18, 32, 0.94), rgba(7, 18, 32, 0.78) 24%, rgba(7, 18, 32, 0.9) 100%),
+    linear-gradient(90deg, rgba(7, 18, 32, 0.82), rgba(7, 18, 32, 0.42) 42%, rgba(7, 18, 32, 0.72)),
+    radial-gradient(circle at 74% 24%, rgba(184, 146, 84, 0.16), transparent 22%);
 }
 
 .team-inner {
@@ -463,73 +513,313 @@ button {
   padding: 144px 36px 88px;
 }
 
+.team-inner::before {
+  content: "";
+  position: absolute;
+  inset: 132px 36px 60px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.team-gallery-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.78fr);
+  gap: clamp(32px, 7vw, 110px);
+  align-items: end;
+  padding: 14px 0 72px;
+}
+
 .team-intro {
   width: min(760px, 100%);
-  margin-bottom: 54px;
 }
 
 .team-kicker {
   margin-bottom: 14px;
-  font-size: 13px;
-  letter-spacing: 0.18em;
+  font-family: var(--font-zh-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
   color: rgba(247, 248, 251, 0.72);
 }
 
 .team-intro h2 {
   margin: 0;
-  font-size: clamp(3rem, 5.2vw, 4.8rem);
-  line-height: 1.05;
+  font-family: var(--font-zh-serif);
+  font-size: clamp(2.9rem, 5vw, 4.5rem);
+  line-height: 1.06;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .team-intro p {
   margin: 24px 0 0;
   max-width: 40rem;
-  font-size: clamp(1rem, 1.45vw, 1.18rem);
-  line-height: 1.9;
+  font-family: var(--font-zh-sans);
+  font-size: 1.03rem;
+  line-height: 1.98;
+  letter-spacing: 0.01em;
   color: rgba(247, 248, 251, 0.86);
 }
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+.team-hero-aside {
+  align-self: center;
+  padding: 38px 0 0 34px;
+  border-left: 1px solid rgba(214, 185, 129, 0.32);
 }
 
-.team-card {
-  min-height: 220px;
-  padding: 28px 26px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(8, 18, 34, 0.34);
+.team-hero-note {
+  margin: 0;
+  max-width: 19rem;
+  font-family: var(--font-zh-serif);
+  font-size: 1.28rem;
+  line-height: 1.68;
+  letter-spacing: 0.04em;
+  color: rgba(247, 248, 251, 0.88);
+}
+
+.team-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.team-values span,
+.team-capability-band span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 16px;
+  border: 1px solid rgba(214, 185, 129, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-zh-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: rgba(247, 248, 251, 0.74);
+}
+
+.team-gallery {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.88fr 1fr;
+  gap: 18px;
+  padding: 18px 0 28px;
+  grid-auto-rows: minmax(170px, auto);
+}
+
+.team-gallery::before {
+  content: "";
+  position: absolute;
+  right: 12%;
+  top: -28px;
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(196, 159, 95, 0.12), rgba(196, 159, 95, 0));
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.team-portrait {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+}
+
+.team-portrait-frame {
+  position: relative;
+  display: flex;
+  align-items: end;
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    linear-gradient(135deg, rgba(11, 21, 40, 0.88), rgba(15, 28, 52, 0.54));
   backdrop-filter: blur(10px);
 }
 
+.team-portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(201, 163, 96, 0.14), transparent 26%);
+  pointer-events: none;
+}
+
+.team-portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.team-portrait-glow {
+  position: absolute;
+  left: -10%;
+  bottom: -18%;
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(208, 170, 104, 0.18), rgba(208, 170, 104, 0));
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.team-portrait-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+}
+
+.team-portrait-label {
+  margin-bottom: 18px;
+  font-family: var(--font-zh-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  color: rgba(214, 185, 129, 0.78);
+}
+
+.team-portrait .team-name {
+  font-size: clamp(1.48rem, 2vw, 2rem);
+}
+
+.team-portrait p {
+  margin: 18px 0 0;
+  font-family: var(--font-zh-sans);
+  font-size: 0.95rem;
+  line-height: 1.86;
+  color: rgba(247, 248, 251, 0.88);
+}
+
+.team-portrait-featured {
+  grid-column: 1 / span 2;
+  grid-row: span 2;
+}
+
+.team-portrait-featured .team-portrait-frame {
+  min-height: 470px;
+  padding: 42px;
+}
+
+.team-portrait-featured .team-name {
+  font-size: clamp(2.4rem, 4.2vw, 3.9rem);
+  letter-spacing: 0.06em;
+}
+
+.team-portrait-featured p {
+  max-width: 30rem;
+  margin-top: 22px;
+  font-size: 1rem;
+  line-height: 1.92;
+}
+
+.team-portrait-tall {
+  grid-column: 3;
+  grid-row: span 2;
+}
+
+.team-portrait-tall .team-portrait-frame {
+  min-height: 470px;
+}
+
+.team-portrait-compact .team-portrait-frame {
+  min-height: 230px;
+}
+
+.team-portrait-wide {
+  grid-column: 2 / span 2;
+}
+
+.team-portrait-wide .team-portrait-frame {
+  min-height: 250px;
+}
+
 .team-name {
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  line-height: 1.1;
+  font-family: var(--font-zh-serif);
+  font-size: clamp(1.5rem, 1.9vw, 1.9rem);
+  line-height: 1.08;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .team-role {
   margin-top: 10px;
-  font-size: 0.96rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-zh-sans);
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
   color: rgba(247, 248, 251, 0.72);
 }
 
-.team-card p {
-  margin: 26px 0 0;
-  font-size: 0.98rem;
-  line-height: 1.85;
-  color: rgba(247, 248, 251, 0.88);
+.team-capability-band {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 54px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @keyframes riseIn {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes heroArtDrift {
+  0% {
+    transform: scale(1.03) translate3d(-1.2%, 0.6%, 0);
+    filter: saturate(1) brightness(0.98);
+  }
+
+  50% {
+    transform: scale(1.06) translate3d(0.4%, -0.8%, 0);
+    filter: saturate(1.04) brightness(1.01);
+  }
+
+  100% {
+    transform: scale(1.08) translate3d(1.4%, -1.2%, 0);
+    filter: saturate(1.02) brightness(1);
+  }
+}
+
+@keyframes heroMistFloat {
+  0% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+    opacity: 0.68;
+  }
+
+  100% {
+    transform: translate3d(2.5%, -1.5%, 0) scale(1.06);
+    opacity: 0.88;
+  }
+}
+
+@keyframes heroLightSweep {
+  0% {
+    transform: translate3d(8%, 1%, 0) skewX(0deg);
+    opacity: 0.18;
+  }
+
+  35% {
+    transform: translate3d(2%, -1%, 0) skewX(-2deg);
+    opacity: 0.52;
+  }
+
+  70% {
+    transform: translate3d(-4%, 0.5%, 0) skewX(1deg);
+    opacity: 0.28;
+  }
+
+  100% {
+    transform: translate3d(-8%, 1.5%, 0) skewX(0deg);
+    opacity: 0.16;
   }
 }
 
@@ -560,8 +850,41 @@ button {
     padding-top: 132px;
   }
 
-  .team-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .team-inner::before {
+    inset: 120px 24px 52px;
+  }
+
+  .team-gallery-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .team-hero-aside {
+    padding: 26px 0 0 24px;
+  }
+
+  .team-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-portrait-featured {
+    grid-column: 1 / span 2;
+  }
+
+  .team-portrait-tall {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .team-portrait-wide {
+    grid-column: 1 / span 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-media-art,
+  .slide-media-art::before,
+  .slide-media-art::after {
+    animation: none;
   }
 }
 
@@ -577,7 +900,19 @@ button {
   }
 
   .brand {
-    max-width: 160px;
+    max-width: 170px;
+    gap: 6px;
+  }
+
+  .brand-wordmark {
+    font-size: clamp(0.92rem, 3.8vw, 1.08rem);
+    letter-spacing: 0.13em;
+  }
+
+  .brand-cn {
+    font-size: 0.56rem;
+    letter-spacing: 0.05em;
+    opacity: 0.88;
   }
 
   .slide-shell {
@@ -590,13 +925,13 @@ button {
   }
 
   .intro-wordmark {
-    font-size: clamp(1rem, 4.3vw, 1.35rem);
-    letter-spacing: 0.005em;
+    font-size: clamp(0.9rem, 4vw, 1.12rem);
+    letter-spacing: 0.11em;
   }
 
   .intro-submark {
-    font-size: 0.75rem;
-    letter-spacing: 0.22em;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
     text-align: center;
   }
 
@@ -605,15 +940,15 @@ button {
     max-width: 62vw;
     flex-wrap: wrap;
     justify-content: flex-end;
-    font-size: 12px;
-    letter-spacing: 0.03em;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
   }
 
   .slide-shell h1,
   .slide-shell h2 {
     max-width: 4.8em;
-    font-size: clamp(2.5rem, 12vw, 4rem);
-    line-height: 1.16;
+    font-size: clamp(1.95rem, 9.4vw, 2.95rem);
+    line-height: 1.08;
   }
 
   .about-inner {
@@ -627,20 +962,20 @@ button {
 
   .about-kicker {
     margin-bottom: 12px;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
   }
 
   .about-content h2 {
-    font-size: clamp(2.5rem, 12vw, 3.6rem);
+    font-size: clamp(2.45rem, 12vw, 3.45rem);
     line-height: 1.08;
   }
 
   .about-content p {
     margin-top: 18px;
     max-width: 18rem;
-    font-size: 1rem;
-    line-height: 1.75;
+    font-size: 0.96rem;
+    line-height: 1.82;
   }
 
   .about-download {
@@ -655,51 +990,113 @@ button {
     padding: 120px 20px 56px;
   }
 
+  .team-inner::before {
+    inset: 108px 16px 42px;
+  }
+
+  .team-gallery-hero {
+    gap: 28px;
+    padding-bottom: 44px;
+  }
+
   .team-intro {
     margin-bottom: 34px;
   }
 
   .team-kicker {
     margin-bottom: 12px;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
   }
 
   .team-intro h2 {
-    font-size: clamp(2.3rem, 11vw, 3.3rem);
+    font-size: clamp(2.3rem, 11vw, 3.2rem);
     line-height: 1.08;
   }
 
   .team-intro p {
     margin-top: 18px;
     max-width: 20rem;
-    font-size: 0.96rem;
-    line-height: 1.75;
+    font-size: 0.94rem;
+    line-height: 1.8;
   }
 
-  .team-grid {
+  .team-hero-aside {
+    padding: 20px 0 0 18px;
+  }
+
+  .team-values {
+    gap: 10px;
+  }
+
+  .team-values span,
+  .team-capability-band span {
+    min-height: 32px;
+    padding: 0 13px;
+    font-size: 0.74rem;
+  }
+
+  .team-hero-note {
+    max-width: 16rem;
+    font-size: 1.06rem;
+    line-height: 1.62;
+  }
+
+  .team-gallery {
     grid-template-columns: 1fr;
     gap: 14px;
+    padding-top: 4px;
   }
 
-  .team-card {
-    min-height: auto;
-    padding: 22px 20px 20px;
+  .team-gallery::before {
+    right: auto;
+    left: 0;
+    top: -10px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .team-portrait,
+  .team-portrait-featured,
+  .team-portrait-tall,
+  .team-portrait-wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .team-portrait-frame {
+    padding: 22px 20px;
+  }
+
+  .team-portrait-featured .team-portrait-frame,
+  .team-portrait-tall .team-portrait-frame,
+  .team-portrait-wide .team-portrait-frame,
+  .team-portrait-compact .team-portrait-frame {
+    min-height: 220px;
+  }
+
+  .team-portrait-featured .team-name {
+    font-size: clamp(1.95rem, 9vw, 2.55rem);
   }
 
   .team-name {
-    font-size: 1.45rem;
+    font-size: 1.36rem;
   }
 
   .team-role {
     margin-top: 8px;
-    font-size: 0.84rem;
+    font-size: 0.8rem;
   }
 
-  .team-card p {
-    margin-top: 18px;
-    font-size: 0.92rem;
-    line-height: 1.72;
+  .team-portrait p {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    line-height: 1.76;
+  }
+
+  .team-capability-band {
+    margin-top: 36px;
+    padding-top: 20px;
   }
 
 }

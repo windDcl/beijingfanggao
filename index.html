@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -38,7 +38,8 @@
 
     <header class="site-header">
       <a class="brand" href="#hero" aria-label="北京康诰律师事务所首页">
-        <img src="./docs/logo.png" alt="北京康诰律师事务所" />
+        <span class="brand-wordmark">KANGGAO</span>
+        <span class="brand-cn">北京康诰律师事务所</span>
       </a>
 
       <nav class="site-nav" aria-label="主导航">
@@ -72,7 +73,6 @@
         <div class="about-overlay"></div>
         <div class="about-inner">
           <div class="about-content">
-            <div class="about-kicker">关于我们</div>
             <h2>关于康诰</h2>
             <p>
               北京康诰律师事务所成立于2025年，专注提供跨领域综合法律服务的专业机构。
@@ -95,50 +95,99 @@
         <div class="team-hero-background"></div>
         <div class="team-hero-overlay"></div>
         <div class="team-inner">
-          <div class="team-intro">
-            <div class="team-kicker">专业团队</div>
-            <h2>专业团队</h2>
-            <p>
-              康诰坚持小而精的团队组织方式，以高密度协作与直接响应，为客户提供稳定、持续、可信赖的法律支持。
-            </p>
+          <div class="team-gallery-hero">
+            <div class="team-intro">
+              <div class="team-kicker">专业团队</div>
+              <h2>专业团队</h2>
+              <p>
+                康诰以审慎判断、跨域协作与直接响应，构成一支小而精的团队。
+                在复杂事务面前，我们更强调合力、节奏与长期服务能力。
+              </p>
+            </div>
+
+            <div class="team-hero-aside">
+              <div class="team-hero-note">
+                我们不以人数取胜，而以判断力、执行力与协同能力建立信任。
+              </div>
+              <div class="team-values" aria-label="团队特质">
+                <span>审慎</span>
+                <span>协同</span>
+                <span>长期主义</span>
+              </div>
+            </div>
           </div>
 
-          <div class="team-grid" role="list">
-            <article class="team-card" role="listitem">
-              <div class="team-name">陈天昊</div>
-              <div class="team-role">创始人</div>
-              <p>统筹事务所综合业务与客户服务，关注长期专业能力建设。</p>
+          <div class="team-gallery" role="list">
+            <article class="team-portrait team-portrait-featured" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-glow"></div>
+                <div class="team-portrait-copy">
+                  <div class="team-portrait-label">核心成员</div>
+                  <div class="team-name">陈天昊</div>
+                  <div class="team-role">创始人</div>
+                  <p>统筹事务所综合业务与客户服务，以稳定判断与长期主义支撑专业输出。</p>
+                </div>
+              </div>
             </article>
 
-            <article class="team-card" role="listitem">
-              <div class="team-name">拜北斗</div>
-              <div class="team-role">主任律师</div>
-              <p>负责重点业务方向与重大事项统筹，支持复杂项目的整体推进。</p>
+            <article class="team-portrait team-portrait-tall" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-copy">
+                  <div class="team-name">拜北斗</div>
+                  <div class="team-role">主任律师</div>
+                  <p>负责重点业务方向与重大事项统筹，支持复杂项目的整体推进。</p>
+                </div>
+              </div>
             </article>
 
-            <article class="team-card" role="listitem">
-              <div class="team-name">吕娜</div>
-              <div class="team-role">专职律师</div>
-              <p>长期参与专项法律服务与复杂争议事务，注重执行细节与落地效率。</p>
+            <article class="team-portrait team-portrait-compact" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-copy">
+                  <div class="team-name">吕娜</div>
+                  <div class="team-role">专职律师</div>
+                  <p>长期参与专项法律服务与复杂争议事务，注重执行细节与服务效率。</p>
+                </div>
+              </div>
             </article>
 
-            <article class="team-card" role="listitem">
-              <div class="team-name">刘钢</div>
-              <div class="team-role">专职律师</div>
-              <p>聚焦争议解决相关工作，以审慎分析和清晰表达支持客户决策。</p>
+            <article class="team-portrait team-portrait-compact" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-copy">
+                  <div class="team-name">刘钢</div>
+                  <div class="team-role">专职律师</div>
+                  <p>聚焦争议解决相关工作，以审慎分析和清晰表达支持客户判断与决策。</p>
+                </div>
+              </div>
             </article>
 
-            <article class="team-card" role="listitem">
-              <div class="team-name">郭晓威</div>
-              <div class="team-role">专职律师</div>
-              <p>提供多语种沟通支持与综合法律服务，协助跨语境事务对接。</p>
+            <article class="team-portrait team-portrait-wide" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-copy">
+                  <div class="team-name">郭晓威</div>
+                  <div class="team-role">专职律师</div>
+                  <p>提供多语种沟通支持与综合法律服务，协助跨语境事务的对接与推进。</p>
+                </div>
+              </div>
             </article>
 
-            <article class="team-card" role="listitem">
-              <div class="team-name">任立红</div>
-              <div class="team-role">战略顾问</div>
-              <p>支持机构战略发展与长期建设，为团队协同和外部沟通提供经验支持。</p>
+            <article class="team-portrait team-portrait-compact" role="listitem">
+              <div class="team-portrait-frame">
+                <div class="team-portrait-copy">
+                  <div class="team-name">任立红</div>
+                  <div class="team-role">战略顾问</div>
+                  <p>支持机构战略发展与长期建设，为团队协同和外部沟通提供经验支撑。</p>
+                </div>
+              </div>
             </article>
+          </div>
+
+          <div class="team-capability-band" aria-label="专业能力">
+            <span>争议解决</span>
+            <span>企业顾问</span>
+            <span>跨领域协作</span>
+            <span>机构治理支持</span>
+            <span>长期法律服务</span>
+            <span>复杂事项统筹</span>
           </div>
         </div>
       </section>
